@@ -64,4 +64,11 @@
 
 
     </select>
+    <update id="updateUser" parameterType="com.baidu.mybaidu.pojo.User">
+        UPDATE
+            equ_user
+        SET
+          userName = #{userName},password = #{password}
+        WHERE id=1
+    </update>
 </mapper>

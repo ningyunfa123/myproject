@@ -16,7 +16,7 @@
             </list>
         </property>
     </bean>
-
+    <bean id="notNullTest" class="com.baidu.mybaidu.dto.NotNullTest"></bean>
     <!-- <context:component-scan base-package="com.ecust.service.impl"></context:component-scan> -->
     <!-- 启用切面 -->
     <aop:aspectj-autoproxy/>
