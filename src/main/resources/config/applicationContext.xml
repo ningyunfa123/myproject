@@ -10,7 +10,11 @@
 
     <!-- 1.配置jdbc文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations" value="classpath:/properties/jdbc.properties"/>
+        <property name="locations">
+            <list>
+                <value>classpath*:properties/*.properties</value>
+            </list>
+        </property>
     </bean>
 
     <!-- <context:component-scan base-package="com.ecust.service.impl"></context:component-scan> -->
@@ -31,14 +35,7 @@
     <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />
 
 
-    <!-- 配置连接池 -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close">
-        <property name="driverClass" value="${Driver}"></property>
-        <property name="jdbcUrl" value="${url}"></property>
-        <property name="user" value="${userName}"></property>
-        <property name="password" value="${password}"></property>
-    </bean>
+
     <import resource="classpath:/config/spring-mybatis.xml"></import>
 
     <!--<bean id="myAspect" class="com.ecust.aspect.CompanyAspect">-->

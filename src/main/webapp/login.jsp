@@ -4,12 +4,15 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
+    <%
+        String path = request.getContextPath();
+        String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+    %>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/js/jquery.min.js" ></script>
-    <script type="text/javascript" src="/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="<%=basePath%>/css/index.css" />
+    <link rel="stylesheet" href="<%=basePath%>/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <script type="text/javascript" src="<%=basePath%>/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="<%=basePath%>/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
 
     <title>校园招聘管理系统</title>
     <style>
@@ -31,7 +34,7 @@
 
 <body>
 <div class="login_logo">
-    <img src="/images/logo_hand_180.jpg"/>
+    <img src="<%=basePath%>/images/logo_hand_180.jpg"/>
 </div>
 <div  class="logon_title"><h3>校园招聘管理系统</h3></div>
 <div class="login_container">
@@ -49,17 +52,17 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img src="/images/new21.jpg">
+                        <img src="<%=basePath%>/images/new21.jpg">
                         <div class="carousel-caption">
                         </div>
                     </div>
                     <div class="item">
-                        <img src="/images/login_1.jpg">
+                        <img src="<%=basePath%>/images/login_1.jpg">
                         <div class="carousel-caption">
                         </div>
                     </div>
                     <div class="item">
-                        <img src="/images/login_2.jpg">
+                        <img src="<%=basePath%>/images/login_2.jpg">
                         <div class="carousel-caption">
                         </div>
                     </div>
@@ -86,7 +89,7 @@
 
                         <input type="submit" class="formBtn-login" value="登 录" />
                         <div>
-                            <p style="text-align: center"><a href="/test/first"  >点 我 注 册</a></p>
+                            <p style="text-align: center"><a href="<%=basePath%>/test/first"  >点 我 注 册</a></p>
                         </div>
 
                     </form>
@@ -95,7 +98,7 @@
                 <div class="errorMsg">
                     <c:if test="${loginMsg !=null}">
                         <center>
-                            <div class="ts"><img src="/images/ts.png" > ${loginMsg}</div>
+                            <div class="ts"><img src="<%=basePath%>/images/ts.png" > ${loginMsg}</div>
                         </center>
                     </c:if>
                     <!-- <div class="forgotpassword">
