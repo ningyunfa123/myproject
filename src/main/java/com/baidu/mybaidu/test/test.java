@@ -33,7 +33,7 @@ public class test {
         notNullTest.setNull(null);
         //Change change = new Change();
 
-        System.out.println(change.test(notNullTest));
+        //System.out.println(change.test(notNullTest));
         System.out.println(test.Test().toString());
         System.out.println(tr);
     }
