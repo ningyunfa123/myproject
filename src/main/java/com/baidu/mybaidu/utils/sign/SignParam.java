@@ -1,4 +1,4 @@
-package com.ecust.utils.sign;
+package com.baidu.mybaidu.utils.sign;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

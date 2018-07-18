@@ -1,10 +1,10 @@
-package com.ecust.utils;
+package com.baidu.mybaidu.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import org.apache.commons.lang.StringUtils;
 
 public class CommonUtils {
     public CommonUtils() {

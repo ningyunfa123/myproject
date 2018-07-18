@@ -1,16 +1,13 @@
-package com.ecust.utils.sign;
+package com.baidu.mybaidu.utils.sign;
 
-import com.ecust.utils.CommonUtils;
+import com.baidu.mybaidu.utils.CommonUtils;
 import com.google.common.collect.Maps;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.StringUtils;
+import java.util.*;
 
 public class SignUtils {
     public static final Integer SIGN_TYPE_MD5 = 1;
