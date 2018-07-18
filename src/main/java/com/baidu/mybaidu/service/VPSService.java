@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface VPSService {
     Boolean insert(Vpsform vpsform);
-    List<Map<String,Object>> getByConds(Integer id,Integer port);
+    List<Map<String,Object>> getByConds(Integer id,Integer port,Integer useStatus,Integer deleteFlag);
     Boolean update(Vpsform vpsform);
 }

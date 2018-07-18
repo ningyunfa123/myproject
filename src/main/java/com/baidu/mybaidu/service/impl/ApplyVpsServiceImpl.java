@@ -7,8 +7,8 @@ import com.baidu.mybaidu.service.ApplyVpsService;
 import com.baidu.mybaidu.service.VPSRecordeService;
 import com.baidu.mybaidu.service.VPSService;
 import com.baidu.mybaidu.service.VPSTypeService;
+import com.baidu.mybaidu.utils.FileUtils;
 import com.baidu.mybaidu.utils.ShellUtils;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.commons.lang3.StringUtils;
 
 import org.apache.log4j.Logger;
@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +25,8 @@ import java.util.Map;
 @Service
 public class ApplyVpsServiceImpl implements ApplyVpsService {
     private static final Logger logger = Logger.getLogger(ApplyVpsServiceImpl.class);
-    @Value("${certcode}")
-    private String certCode;
+    @Value("${certCodeFile}")
+    private String certCodeFilePath;
     @Autowired
     VPSTypeService vpsTypeService;
     @Autowired
@@ -42,7 +43,7 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
             throw new Exception("userName为空");
         }
         //验证码校验
-        String[] certCodeList = certCode.split(",");
+        String[] certCodeList = getCertCodeArray(certCodeFilePath);
         Boolean existCertCode = false;
         for(String singleCertCode: certCodeList){
             if(singleCertCode.equals(applyVpsDto.getCertCode())){
@@ -55,6 +56,27 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
             returnResult.put("msg","验证码不存在");
             return returnResult;
         }
+        //校验验证码是否已使用
+        VpsRecordForm vpsRecordForm1 = new VpsRecordForm();
+        vpsRecordForm1.setPassword(applyVpsDto.getCertCode());
+        List<Map<String,Object>> dbVpsRecord = vpsRecordeService.getByConds(null,null,applyVpsDto.getCertCode(),null);
+        if(!CollectionUtils.isEmpty(dbVpsRecord)){
+            if(dbVpsRecord.get(0).get("user_name").toString().equals(applyVpsDto.getUserName())){
+                returnResult.put("errno","0");
+                returnResult.put("msg","success");
+                Map<String,Object> data = new HashMap<>();
+                data.put("port",dbVpsRecord.get(0).get("port"));
+                data.put("password",dbVpsRecord.get(0).get("password"));
+                returnResult.put("data",data);
+                return returnResult;
+            }else{
+                returnResult.put("errno","-2");
+                returnResult.put("msg","验证码已使用");
+                return returnResult;
+            }
+        }
+
+
         //获取套餐流量
         try{
             Map<String ,Object> vpsType = getVpsType(applyVpsDto);
@@ -68,7 +90,7 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
             return returnResult;
         }
         //查vps表获取port信息
-        Map<String,Object> vps = getVps(null,null);
+        Map<String,Object> vps = getVps(null,null,1,0);
         if(!CollectionUtils.isEmpty(vps)){
             if(vps.get("ip") != null && vps.get("port") != null && vps.get("password")!= null){
                 applyVpsDto.setIp(vps.get("ip").toString());
@@ -82,7 +104,7 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
 
         }else{
             returnResult.put("errno","-2");
-            returnResult.put("msg","获取vps信息为空");
+            returnResult.put("msg","vps账号已售罄，请联系管理员退款");
             return returnResult;
         }
         //执行shell
@@ -151,8 +173,8 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
         List<Map<String,Object>> dbResult = vpsTypeService.getTypeByConds(typeId,null);
         return CollectionUtils.isEmpty(dbResult)? null:dbResult.get(0);
     }
-    private Map<String,Object> getVps(Integer id,Integer port){
-        List<Map<String,Object>> dbResult = vpsService.getByConds(id,port);
+    private Map<String,Object> getVps(Integer id,Integer port,Integer useStatus,Integer deleteFlag){
+        List<Map<String,Object>> dbResult = vpsService.getByConds(id,port,useStatus,deleteFlag);
         return CollectionUtils.isEmpty(dbResult)? null:dbResult.get(0);
     }
     private Boolean execShellToRestrict(ApplyVpsDto applyVpsDto) throws Exception {
@@ -164,16 +186,21 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
             String amountRestrictFilePath = this.getClass().getClassLoader().getResource("/shell/amountrestrict.sh").getPath();
             String port = applyVpsDto.getPort().toString();
             Integer amount = Integer.valueOf(applyVpsDto.getUseTime())*applyVpsDto.getMonthAmount();
-            Long transAmount = Long.valueOf(amount)*1000000;
+            Long transAmount = Long.valueOf(amount)*1000000L;
             String stringTransAmount = transAmount.toString();
             String[] portRestrictParam = new String[]{port};
             String[] amountRestrictParam = new String[]{port,stringTransAmount};
             ShellUtils.execShell(portRestrictFilePath,portRestrictParam);
             ShellUtils.execShell(amountRestrictFilePath,amountRestrictParam);
         }catch (Exception e){
+            //暂不处理
             e.printStackTrace();
-            throw e;
+            return false;
+
         }
         return true;
+    }
+    private String[] getCertCodeArray(String path) throws IOException {
+        return FileUtils.getFileContents(path).split(",");
     }
 }

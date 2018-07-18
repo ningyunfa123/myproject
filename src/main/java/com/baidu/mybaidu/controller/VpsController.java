@@ -57,7 +57,7 @@ public class VpsController {
             return returnResult;
         }
         String sign = SignUtils.buildSign(applyVpsDto,1,"123456");
-        if(!applyVpsDto.getSign().equals(sign)){
+        if(StringUtils.isEmpty(applyVpsDto.getSign()) || !applyVpsDto.getSign().equals(sign)){
             returnResult.put("errno","-3");
             returnResult.put("msg","签名校验失败");
             return returnResult;

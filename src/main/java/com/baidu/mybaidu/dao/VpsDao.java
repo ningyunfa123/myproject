@@ -8,6 +8,7 @@ import java.util.Map;
 
 public interface VpsDao {
     void insert(Vps vps);
-    List<Map<String,Object>> getByConds(@Param("port") Integer port,@Param("id") Integer id);
+    List<Map<String,Object>> getByConds(@Param("port") Integer port,@Param("id") Integer id,@Param("use_status")Integer use_status,
+                                        @Param("delete_flag") Integer deleteFlag);
     void update(Vps vps);
 }

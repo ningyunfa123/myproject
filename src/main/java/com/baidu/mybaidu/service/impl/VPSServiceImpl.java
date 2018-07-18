@@ -42,8 +42,8 @@ public class VPSServiceImpl implements VPSService {
     }
 
     @Override
-    public List<Map<String, Object>> getByConds(Integer id, Integer port) {
-        return vpsDao.getByConds(port,id);
+    public List<Map<String, Object>> getByConds(Integer id, Integer port,Integer useStatus,Integer deleteFlag) {
+        return vpsDao.getByConds(port,id,useStatus,deleteFlag);
     }
 
     @Override

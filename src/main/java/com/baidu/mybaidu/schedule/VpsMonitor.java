@@ -26,12 +26,12 @@ public class VpsMonitor {
             logger.error("数据不为空");
             for(Map<String,Object> vpsRecord:vpsRecordList){
                 Integer useTime = (Integer) vpsRecord.get("use_time");
-                Long transUseTime = Long.valueOf(useTime)*3600000*24;
+                Long transUseTime = Long.valueOf(useTime)*86400000L;
                 Long createTime = (Long) vpsRecord.get("update_time");
                 if(System.currentTimeMillis()>(transUseTime+createTime)){
                     VpsRecordForm vpsRecordForm = new VpsRecordForm();
                     vpsRecordForm.setId(vpsRecord.get("id").toString());
-                    vpsRecordForm.setStatus("2");
+                    vpsRecordForm.setStatus("0");
                     Integer count = 0;
                     Boolean flag = true;
                     do {
@@ -40,7 +40,7 @@ public class VpsMonitor {
                             logger.debug("数据更新成功");
                         }
                         flag = !result;
-                        count+=1;
+                        count++;
                     }while (flag && count<3);
 
                 }

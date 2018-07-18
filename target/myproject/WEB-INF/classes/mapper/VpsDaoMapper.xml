@@ -29,13 +29,18 @@
             *
         FROM vps e
         WHERE
-            use_status = 1
-            AND delete_flag = 0
+            e.default = 1
             <if test="port != null">
                 AND e.port = #{port}
             </if>
             <if test="id != null">
                 AND e.id = #{id}
+            </if>
+            <if test="use_status != null">
+                AND e.use_status = #{use_status}
+            </if>
+            <if test="delete_flag != null">
+                AND e.delete_flag = #{delete_flag}
             </if>
     </select>
     <update id="update" parameterType="com.baidu.mybaidu.pojo.Vps">

@@ -31,7 +31,7 @@ public class UpdateVpsTask {
         Map<String,String> configPortPassword = (Map<String, String>) configMap.get("port_password");
         logger.error("config"+configPortPassword);
         //获取数据库vps信息
-        List<Map<String,Object>> vpsFromDB = vpsService.getByConds(null,null);
+        List<Map<String,Object>> vpsFromDB = vpsService.getByConds(null,null,null,0);
         logger.error("vpsFromDB:"+vpsFromDB);
         if(!CollectionUtils.isEmpty(vpsFromDB)){
             Map<String,String> dbPortPassword = new HashMap<>();
@@ -55,27 +55,35 @@ public class UpdateVpsTask {
             //获取数据库中于配置文件不存在的端口信息并插入vps表
             for(Integer port:configPortList){
                 if(!dbPortPassword.containsKey(port.toString())){
-                    String password = configPortPassword.get(port.toString());
-                    Vpsform vpsform = new Vpsform();
-                    vpsform.setPort(port.toString());
-                    vpsform.setPassword(password);
-                    vpsform.setIp(configMap.get("server").toString());
-                    try {
-                        vpsService.insert(vpsform);
+                    List<Map<String,Object>> dbPortinvalid = vpsService.getByConds(null,port,null,1);
+                    if(!CollectionUtils.isEmpty(dbPortinvalid)){
+                        Vpsform vpsform1 = new Vpsform();
+                        vpsform1.setId(dbPortinvalid.get(0).get("id").toString());
+                        vpsform1.setDeleteFlag("0");
+                        vpsService.update(vpsform1);
+                    }else{
+                        String password = configPortPassword.get(port.toString());
+                        Vpsform vpsform = new Vpsform();
+                        vpsform.setPort(port.toString());
+                        vpsform.setPassword(password);
+                        vpsform.setIp(configMap.get("server").toString());
+                        try {
+                            vpsService.insert(vpsform);
 
-                    }catch (Exception e){
-                        e.printStackTrace();
-                        logger.error("vps信息插入数据库失败");
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            logger.error("vps信息插入数据库失败");
+                        }
                     }
+
                 }
             }
             //获取配置信息中已删除的数据并将vps表中的数据置为已删除
             for(Integer port:dbPortList){
                 if(!configPortPassword.containsKey(port.toString())){
-                    Map<String,Object> res = vpsService.getByConds(null,port).get(0);
+                    Map<String,Object> res = vpsService.getByConds(null,port,null,0).get(0);
                     Vpsform vpsform = new Vpsform();
                     vpsform.setId(res.get("id").toString());
-                    vpsform.setStatus("2");
                     vpsform.setDeleteFlag("1");
                     try {
                         vpsService.update(vpsform);

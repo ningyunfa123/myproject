@@ -29,7 +29,7 @@ public class ShellUtils {
             ps.waitFor();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(ps.getInputStream()));
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line).append("\n");
@@ -62,7 +62,7 @@ public class ShellUtils {
             ps.waitFor();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(ps.getInputStream()));
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line).append("\n");
