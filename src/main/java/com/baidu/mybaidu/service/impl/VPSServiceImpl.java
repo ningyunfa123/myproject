@@ -1,4 +1,4 @@
 package com.baidu.mybaidu.service.impl;
 
-public class UserServiceImpl {
+public class VPSServiceImpl {
 }
