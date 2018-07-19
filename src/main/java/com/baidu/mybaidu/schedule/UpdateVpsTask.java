@@ -23,7 +23,7 @@ public class UpdateVpsTask {
     private String path;
     @Autowired
     VPSService vpsService;
-    @Scheduled(cron = "0/20 * * * * ? ")
+    @Scheduled(cron = "0 0 3 * * ? ")
     public void work() throws IOException {
         String jsonString = FileUtils.getFileContents(path);
         Map<String,Object> configMap = DataTransferUtils.jsonToMap(jsonString);

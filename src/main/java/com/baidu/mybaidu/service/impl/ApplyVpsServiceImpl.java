@@ -25,8 +25,18 @@ import java.util.Map;
 @Service
 public class ApplyVpsServiceImpl implements ApplyVpsService {
     private static final Logger logger = Logger.getLogger(ApplyVpsServiceImpl.class);
-    @Value("${certCodeFile}")
-    private String certCodeFilePath;
+    @Value("${menu1}")
+    private String certCode1FilePath;
+    @Value("${menu2}")
+    private String certCode2FilePath;
+    @Value("${menu3}")
+    private String certCode3FilePath;
+    @Value("${amount_menu1}")
+    private Integer menu1Amount;
+    @Value("${amount_menu1}")
+    private Integer menu2Amount;
+    @Value("${amount_menu3}")
+    private Integer menu3Amount;
     @Autowired
     VPSTypeService vpsTypeService;
     @Autowired
@@ -43,7 +53,14 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
             throw new Exception("userName为空");
         }
         //验证码校验
-        String[] certCodeList = getCertCodeArray(certCodeFilePath);
+        String[] certCodeList;// = getCertCodeArray(certCodeFilePath);
+        if(applyVpsDto.getVpsType().equals("1")){
+            certCodeList = getCertCodeArray(certCode1FilePath);
+        }else if(applyVpsDto.getVpsType().equals("2")){
+            certCodeList = getCertCodeArray(certCode2FilePath);
+        }else{
+            certCodeList = getCertCodeArray(certCode3FilePath);
+        }
         Boolean existCertCode = false;
         for(String singleCertCode: certCodeList){
             if(singleCertCode.equals(applyVpsDto.getCertCode())){
@@ -78,16 +95,15 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
 
 
         //获取套餐流量
-        try{
-            Map<String ,Object> vpsType = getVpsType(applyVpsDto);
-            if(!CollectionUtils.isEmpty(vpsType)){
-                monthAmount = (Integer) vpsType.get("amount");
-                applyVpsDto.setMonthAmount(monthAmount);
-            }
-        }catch (Exception e){
-            returnResult.put("errno","-2");
-            returnResult.put("msg","该套餐不存在");
-            return returnResult;
+        if(applyVpsDto.getVpsType().equals("1")){
+            applyVpsDto.setMonthAmount(menu1Amount);
+        }else if(applyVpsDto.getVpsType().equals("2")){
+            applyVpsDto.setMonthAmount(menu2Amount);
+        }else if(applyVpsDto.getVpsType().equals("3")){
+            applyVpsDto.setMonthAmount(menu3Amount);
+        }else{
+            logger.fatal("vpsType不存在。");
+            throw new Exception("该套餐不存在。");
         }
         //查vps表获取port信息
         Map<String,Object> vps = getVps(null,null,1,0);
@@ -193,6 +209,7 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
             ShellUtils.execShell(portRestrictFilePath,portRestrictParam);
             ShellUtils.execShell(amountRestrictFilePath,amountRestrictParam);
         }catch (Exception e){
+            logger.fatal("执行shell异常");
             //暂不处理
             e.printStackTrace();
             return false;

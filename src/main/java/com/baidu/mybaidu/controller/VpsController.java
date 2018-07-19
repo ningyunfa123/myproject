@@ -62,6 +62,7 @@ public class VpsController {
             returnResult.put("msg","签名校验失败");
             return returnResult;
         }
+        logger.error("签名校验成功");
         applyVpsDto.setUserName(currentUser.getUserName());
         try{
             applyResponse = applyVpsService.applyVps(applyVpsDto);
@@ -75,6 +76,8 @@ public class VpsController {
         if(applyResponse.get("errno").equals("0")){
             Map<String,Object> data = new HashMap<>();
             Map<String,Object> data1 = (Map<String, Object>) applyResponse.get("data");
+            returnResult.put("errno","0");
+            returnResult.put("msg","success");
             data.put("port",data1.get("port"));
             data.put("password",data1.get("password"));
             returnResult.put("data",data);

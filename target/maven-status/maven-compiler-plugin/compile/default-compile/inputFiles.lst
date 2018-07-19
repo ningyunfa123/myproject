@@ -4,9 +4,11 @@ D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\service\impl\VPSTypeSer
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\common\interceptor\UserHolder.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\dao\UserDao.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\service\VPSRecordeService.java
+D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\utils\DataTransferUtils.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\service\impl\ApplyVpsServiceImpl.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\controller\SignController.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\schedule\VpsMonitor.java
+D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\schedule\UpdateVpsTask.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\utils\ShellUtils.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\dto\Vpsform.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\utils\sign\SignParam.java

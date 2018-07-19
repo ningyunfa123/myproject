@@ -17,12 +17,13 @@
 	href="${pageContext.request.contextPath}/css/bootstrap-pagination.min.css"
 	rel="stylesheet" /> --%>
 <script type="text/javascript" charset="utf-8"
-        src="${pageContext.request.contextPath}/js/bootstrap-paginator.min.js"></script>
+        src="<%=basePath%>/js/bootstrap-paginator.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/js/bootstrap-datetimepicker.min.js"></script>
-
+<script type="text/javascript" src="<%=basePath%>/js/JQuery.md5.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="<%=basePath%>/css/bootstrap-combined.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="<%=basePath%>/css/bootstrap-datetimepicker.min.css">
 
     <%User user = (User) session.getAttribute("currentUser"); %>
     <% String name = user==null? "false":StringUtils.isNotEmpty(user.getTrueName())? user.getTrueName():user.getUserName().split("@")[0];%>
@@ -37,7 +38,7 @@
             <div class="navbar navbar-inverse">
                 <div class="navbar-inner">
                     <div class="container-fluid">
-                        <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">网站名</a>
+                        <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="#" class="brand">VPS分享网</a>
                         <div class="nav-collapse collapse navbar-responsive-collapse">
                             <ul class="nav">
                                 <li class="active">
@@ -98,7 +99,7 @@
                     这是一个可视化布局模板, 你可以点击模板里的文字进行修改, 也可以通过点击弹出的编辑框进行富文本修改. 拖动区块能实现排序.
                 </p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="#">参看更多 »</a>
+                    <a class="btn btn-primary btn-large" href="javascript:quicksee()">快速查看 »</a>
                 </p>
             </div>
             <div class="row-fluid">
@@ -120,17 +121,50 @@
                             </p>
                             <p>
                                 <label>验证码</label>
-                            </p><input type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" type="submit">提交</button>
+                            </p><input id="certCode1" type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn"  type="button" onclick="apply1()" >提交</button>
                         </fieldset>
                     </form>
                 </div>
+                <!--端口信息返回模态框 -->
+                <div id="modal-container-620238" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">
+                            vps信息
+                        </h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label" for="port1">vps端口</label>
+                                <div class="controls">
+                                    <input id="port1" type="text" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="password1">密码</label>
+                                <div class="controls">
+                                    <input id="password1" type="text" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                    </div>
+                </div>
+
+                <!-- #############################-->
+
+
+
                 <div class="span4">
                     <p>
                         <img alt="" src="<%=basePath%>/img/beauty.jpg" />
                     </p>
                     <form>
                         <fieldset>
-                            <legend>表单项</legend>
+                            <legend>套餐二</legend>
                             <p>
                                 ip地址：
                             </p>
@@ -142,17 +176,19 @@
                             </p>
                             <p>
                                 <label>验证码</label>
-                            </p><input type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" type="submit">提交</button>
+                            </p><input id="certCode2" type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" data-toggle="modal" type="button" onclick="return apply2()" data-target="#modal-container-620238">提交</button>
                         </fieldset>
                     </form>
                 </div>
+
+                
                 <div class="span4">
                     <p>
                         <img alt="" src="<%=basePath%>/img/beauty.jpg" />
                     </p>
                     <form>
                         <fieldset>
-                            <legend>表单项</legend>
+                            <legend>套餐三</legend>
                             <p>
                                 ip地址：
                             </p>
@@ -164,10 +200,12 @@
                             </p>
                             <p>
                                 <label>验证码</label>
-                            </p><input type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" type="submit">提交</button>
+                            </p><input type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" data-toggle="modal" type="button" onclick="return apply3()" data-target="#modal-container-620238">提交</button>
                         </fieldset>
                     </form>
                 </div>
+
+                
             </div>
         </div>
     </div>
@@ -195,6 +233,74 @@
         if (confirm("确认退出？")) {
             window.location.href = "<%=basePath%>/user/logout";
         }
+    }
+    function apply1() {
+        var vpsType =1;
+        var certCode = $("#certCode1").val();
+        var strs = certCode.split("#");
+        var useTime = strs[1];
+        if(!useTime){
+            alert("请输入正确的验证码。");
+            return false;
+        }
+        var preSign = "certCode="+certCode+"&useTime="+useTime+"&vpsType="+vpsType+"&123456";
+        var sign = hex_md5(preSign);
+        apply(vpsType,certCode,useTime,sign)
+        
+    }
+    function apply2() {
+        var vpsType =2;
+        var certCode = $("#certCode2").val();
+        var strs = certCode.split("#");
+        var useTime = strs[1];
+        if(!useTime){
+            alert("请输入正确的验证码。");
+            return false;
+        }
+        var preSign = "certCode="+certCode+"&useTime="+useTime+"&vpsType="+vpsType+"&123456";
+        var sign = hex_md5(preSign);
+        apply(vpsType,certCode,useTime,sign)
+    }
+    function apply3() {
+        var vpsType =3;
+        var certCode = $("#certCode2").val();
+        var strs = certCode.split("#");
+        var useTime = strs[1];
+        if(!useTime){
+            alert("请输入正确的验证码。");
+            return false;
+        }
+        var preSign = "certCode="+certCode+"&useTime="+useTime+"&vpsType="+vpsType+"&123456";
+        var sign = hex_md5(preSign);
+        apply(vpsType,certCode,useTime,sign)
+    }
+    function apply(vpsType,certCode,useTime,sign) {
+        $
+            .ajax({
+                url: "<%=basePath%>/vps/apply",
+                type: "post",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    vpsType: vpsType,
+                    certCode: certCode,
+                    useTime: useTime,
+                    sign:sign
+                }),
+                success: function (data) {
+                    if(data.errno ==0){
+                        $("#port1").val(data.data.port);
+                        $("#password1").val(data.data.password);
+                        $('#modal-container-620238').modal('show');
+                    }else{
+                        alert(data.msg)
+                    }
+
+                },
+                error: function () {
+                    alert("添加出错!");
+                }
+
+            });
     }
 
 
