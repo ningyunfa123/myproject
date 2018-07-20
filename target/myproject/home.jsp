@@ -42,7 +42,7 @@
                         <div class="nav-collapse collapse navbar-responsive-collapse">
                             <ul class="nav">
                                 <li class="active">
-                                    <a href="#">主页</a>
+                                    <a href="home.jsp">主页</a>
                                 </li>
                                 <li>
                                     <a href="#">链接</a>
@@ -92,33 +92,27 @@
     <div class="row-fluid">
         <div class="span12">
             <div class="hero-unit">
-                <h1>
-                    Hello, world!
-                </h1>
+                <h2>
+                    Hello, everyone!
+                </h2>
                 <p>
-                    这是一个可视化布局模板, 你可以点击模板里的文字进行修改, 也可以通过点击弹出的编辑框进行富文本修改. 拖动区块能实现排序.
+                    &nbsp; &nbsp; &nbsp; &nbsp;当你进入到这个页面的时候，说明你已经购买了相应的vps产品了。该网站是近期刚开发，内部可能会存在一些bug或其它问题，还请各位如果遇到什么问题不要急躁，你及时联系我我及时帮大家解决。由于网站刚上线没有客流量，就没有接入支付宝等相关支付业务,等后续客流量上来了将会陆续接入相关支付服务，届时用户可以直接在网站下单而不需要在电商平台下单然后找我这么麻烦了。
                 </p>
                 <p>
-                    <a class="btn btn-primary btn-large" href="javascript:quicksee()">快速查看 »</a>
+                    <a class="btn btn-primary btn-large" href="javascript:fastquery()">快速查看 »</a>
                 </p>
             </div>
             <div class="row-fluid">
                 <div class="span4">
                     <p>
-                        <img alt="" src="<%=basePath%>/img/beauty.jpg" />
+                        <img alt="" src="<%=basePath%>/img/show3.jpg" />
                     </p>
                     <form>
                         <fieldset>
                             <legend>套餐一</legend>
-                            <p>
-                                <label>ip地址：</label>
-                            </p>
-                            <p>
-                                <label>加密方式：</label>
-                            </p>
-                            <p>
-                                <label>套餐价格：￥30/月</label>
-                            </p>
+                            <p>ip地址：</p>
+                            <p>加密方式：</p>
+                            <p>套餐价格：￥30/月</p>
                             <p>
                                 <label>验证码</label>
                             </p><input id="certCode1" type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn"  type="button" onclick="apply1()" >提交</button>
@@ -153,27 +147,17 @@
                         <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
                     </div>
                 </div>
-
                 <!-- #############################-->
-
-
-
                 <div class="span4">
                     <p>
-                        <img alt="" src="<%=basePath%>/img/beauty.jpg" />
+                        <img alt="" src="<%=basePath%>/img/show1.jpg" />
                     </p>
                     <form>
                         <fieldset>
                             <legend>套餐二</legend>
-                            <p>
-                                ip地址：
-                            </p>
-                            <p>
-                                加密方式：
-                            </p>
-                            <p>
-                                套餐价格：￥50/月
-                            </p>
+                            <p>ip地址：</p>
+                            <p> 加密方式：</p>
+                            <p>套餐价格：￥50/月</p>
                             <p>
                                 <label>验证码</label>
                             </p><input id="certCode2" type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" data-toggle="modal" type="button" onclick="return apply2()" data-target="#modal-container-620238">提交</button>
@@ -181,25 +165,17 @@
                     </form>
                 </div>
 
-                
                 <div class="span4">
                     <p>
-                        <img alt="" src="<%=basePath%>/img/beauty.jpg" />
+                        <img alt="" src="<%=basePath%>/img/show2.jpg" />
                     </p>
                     <form>
                         <fieldset>
                             <legend>套餐三</legend>
-                            <p>
-                                ip地址：
-                            </p>
-                            <p>
-                                加密方式：
-                            </p>
-                            <p>
-                                套餐价格：￥60/月
-                            </p>
-                            <p>
-                                <label>验证码</label>
+                            <p>ip地址：</p>
+                            <p>加密方式：</p>
+                            <p> 套餐价格：￥60/月</p>
+                            <p><label>验证码</label>
                             </p><input type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" data-toggle="modal" type="button" onclick="return apply3()" data-target="#modal-container-620238">提交</button>
                         </fieldset>
                     </form>
@@ -263,7 +239,7 @@
     }
     function apply3() {
         var vpsType =3;
-        var certCode = $("#certCode2").val();
+        var certCode = $("#certCode3").val();
         var strs = certCode.split("#");
         var useTime = strs[1];
         if(!useTime){
@@ -301,6 +277,29 @@
                 }
 
             });
+    }
+    function fastquery() {
+        $
+            .ajax({
+                url: "<%=basePath%>/vps/fastquery",
+                type: "get",
+                data:{},
+                success: function (data) {
+                    if(data.errno ==0){
+                        $("#port1").val(data.data.port);
+                        $("#password1").val(data.data.password);
+                        $('#modal-container-620238').modal('show');
+                    }else{
+                        alert(data.msg)
+                    }
+
+                },
+                error: function () {
+                    alert("添加出错!");
+                }
+
+            });
+
     }
 
 

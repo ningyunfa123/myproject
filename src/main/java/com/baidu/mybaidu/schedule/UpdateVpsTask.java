@@ -110,11 +110,6 @@ public class UpdateVpsTask {
                 }
             }
         }
-
-
-
-
-
     }
 
 }

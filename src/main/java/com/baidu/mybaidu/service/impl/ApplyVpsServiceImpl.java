@@ -45,7 +45,6 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
     VPSRecordeService vpsRecordeService;
     @Override
     public Map<String,Object> applyVps(ApplyVpsDto applyVpsDto) throws Exception {
-        Integer monthAmount;
         Map<String,Object> returnResult = new HashMap<>();
         //用户名校验
         if(StringUtils.isEmpty(applyVpsDto.getUserName())){
@@ -95,15 +94,19 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
 
 
         //获取套餐流量
-        if(applyVpsDto.getVpsType().equals("1")){
-            applyVpsDto.setMonthAmount(menu1Amount);
-        }else if(applyVpsDto.getVpsType().equals("2")){
-            applyVpsDto.setMonthAmount(menu2Amount);
-        }else if(applyVpsDto.getVpsType().equals("3")){
-            applyVpsDto.setMonthAmount(menu3Amount);
-        }else{
-            logger.fatal("vpsType不存在。");
-            throw new Exception("该套餐不存在。");
+        switch (applyVpsDto.getVpsType()) {
+            case "1":
+                applyVpsDto.setMonthAmount(menu1Amount);
+                break;
+            case "2":
+                applyVpsDto.setMonthAmount(menu2Amount);
+                break;
+            case "3":
+                applyVpsDto.setMonthAmount(menu3Amount);
+                break;
+            default:
+                logger.fatal("vpsType不存在。");
+                throw new Exception("该套餐不存在。");
         }
         //查vps表获取port信息
         Map<String,Object> vps = getVps(null,null,1,0);
@@ -213,7 +216,6 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
             //暂不处理
             e.printStackTrace();
             return false;
-
         }
         return true;
     }
