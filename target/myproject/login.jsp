@@ -66,7 +66,7 @@
                     </div>
                 </div> <a data-slide="prev" href="#carousel-364892" class="left carousel-control">‹</a> <a data-slide="next" href="#carousel-364892" class="right carousel-control">›</a>
             </div>
-            <form  id="login_form"  action="<c:url value="/user/login" />" method="post">
+            <form  action="#" id="login_form" >
                 <div>
                     <div class="login-item">
                         <span class="span_user glyphicon glyphicon-user "></span>
@@ -86,7 +86,7 @@
                 </div>
 
                 <div align="center" >
-                    <input type="submit"  class="formBtn-login" value="登 录" />
+                    <input type="button"  class="formBtn-login" onclick="login()" value="登 录" />
                 </div>
 
 
@@ -101,7 +101,41 @@
 <%--<div class="login_bottom">--%>
 <%--<span class="bottom_info">Copyright©2005-2016 360.CN All Rights Reserved 360安全中心 京ICP证080047号 京公网安备110000000006号</span>--%>
 <%--</div>--%>
+<script type="text/javascript">
+    function login() {
+        var userName = $.trim($("#user").val());
+        var password = $.trim($("#password").val());
+        if(!userName || !password){
+            alert("用户名或密码不能为空！")
+            return false;
+        }
+        $
+            .ajax({
+                url: "<%=basePath%>/user/login",
+                type: "post",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    userName: userName,
+                    password: password
+                }),
+                success: function (data) {
+                    if(data.errno ==0){
+                        window.location.href="<%=basePath%>/home.jsp";
+                    }else{
+                        alert(data.msg)
+                    }
+
+                },
+                error: function () {
+                    alert("添加出错!");
+                }
+
+            });
+    }
+</script>
 </body>
+<
+
 
 </html>
 

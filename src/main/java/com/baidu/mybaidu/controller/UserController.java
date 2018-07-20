@@ -1,13 +1,18 @@
 package com.baidu.mybaidu.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import com.baidu.mybaidu.dto.UserForm;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,42 +26,48 @@ import com.baidu.mybaidu.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
+    private static final Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
 	private UserService userService;
 
 	//登录
+	@ResponseBody
 	@RequestMapping("/login")
-	public String login(User user,HttpServletRequest request){
-		String name = request.getParameter("userName");
-		String password = request.getParameter("password");
-
+	public Map<String,Object> login(@RequestBody @Valid UserForm userForm, HttpServletRequest request,BindingResult bindingResult) throws Exception {
+		if(bindingResult.hasErrors()){
+			throw new Exception("用户名或密码不能为空！");
+		}
+		Map<String,Object> result = new HashMap<>();
 		HttpSession session = request.getSession();
 		User currentUser = (User) session.getAttribute("currentUser");
 		// 用户已经登录了，无需重复登录,跳转回主页
 		if (currentUser != null) {
-			return "forward:/home.jsp";
+			result.put("errno","0");
+			result.put("msg","success");
+			return result;
 		}
 
-		//用户名或密码为空,用户输入账号或密码不能为字符串“null”
-		if(name == null || password == null){
-			request.setAttribute("loginMsg","enter your info first");
-			return "forward:/login.jsp";
-		}
-		//注册时进行空格等信息的过滤
-		if(!(name.trim().length()>0 && password.trim().length()>0)){
-			request.setAttribute("loginMsg","invalid input");
-			return "forward:/login.jsp";
-		}
+		User user = new User();
+		user.setUserName(userForm.getUserName());
+		user.setPassword(userForm.getPassword());
 		currentUser = userService.login(user);
 
 		if(currentUser == null){
-			request.setAttribute("loginMsg", "username or password is wrong");
-			return "forward:/login.jsp";
+			result.put("errno","-1");
+			result.put("msg","用户名或密码错误");
+			return result;
 		}else{
-			session.setAttribute("currentUser", currentUser);
-			return "forward:/home.jsp";
+			session.setAttribute("currentUser",currentUser);
+			logger.fatal("登录成功");
+			result.put("errno","0");
+			result.put("msg","success");
+			return result;
 		}
+	}
+	@RequestMapping(value = "/forward",method = RequestMethod.GET)
+	public String forward(){
+		logger.fatal("跳转");
+		return "main/home";
 	}
 	//退出
 	@RequestMapping("/logout")

@@ -195,7 +195,7 @@
         var userName = $("#userName").val();
         var html;
         if(userName == "false"){
-            html = "<li><a href=\"<%=basePath%>/user/login\">请登录</a></li>";
+            html = "<li><a href=\"<%=basePath%>/login.jsp\">请登录</a></li>";
             html+="<li><a href=\"<%=basePath%>/signup\">注册</a></li>";
             $("#loginStatus").append(html);
         }else{

@@ -7,6 +7,7 @@ D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\service\VPSRecordeServi
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\utils\DataTransferUtils.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\service\impl\ApplyVpsServiceImpl.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\controller\SignController.java
+D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\dto\UserForm.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\schedule\VpsMonitor.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\schedule\UpdateVpsTask.java
 D:\IDEAproject\myproject\src\main\java\com\baidu\mybaidu\utils\ShellUtils.java

@@ -5,6 +5,7 @@ com\baidu\mybaidu\utils\sign\SignParam.class
 com\baidu\mybaidu\dao\VpsTypeDao.class
 com\baidu\mybaidu\pojo\VpsType.class
 com\baidu\mybaidu\service\VPSService.class
+com\baidu\mybaidu\dto\UserForm.class
 com\baidu\mybaidu\utils\FileUtils.class
 com\baidu\mybaidu\service\VPSRecordeService.class
 com\baidu\mybaidu\pojo\Vps.class
