@@ -33,7 +33,7 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
     private String certCode3FilePath;
     @Value("${amount_menu1}")
     private Integer menu1Amount;
-    @Value("${amount_menu1}")
+    @Value("${amount_menu2}")
     private Integer menu2Amount;
     @Value("${amount_menu3}")
     private Integer menu3Amount;
