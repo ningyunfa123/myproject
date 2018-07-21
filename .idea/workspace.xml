@@ -7,21 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bd37c83-d6ac-41f2-bc6f-da304ec800f4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/dto/UserForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/ScheduleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/ScheduleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/baidu/mybaidu/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/baidu/mybaidu/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/baidu/mybaidu/schedule/ScheduleTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/baidu/mybaidu/schedule/ScheduleTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/myproject.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/myproject.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/myproject/WEB-INF/classes/com/baidu/mybaidu/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/myproject/WEB-INF/classes/com/baidu/mybaidu/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/myproject/WEB-INF/classes/com/baidu/mybaidu/schedule/ScheduleTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/myproject/WEB-INF/classes/com/baidu/mybaidu/schedule/ScheduleTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/myproject/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/myproject/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/myproject/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/myproject/login.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -71,11 +57,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="200" column="14" lean-forward="true" selection-start-line="200" selection-start-column="14" selection-end-line="200" selection-end-column="14" />
+            <state relative-caret-position="3743">
+              <caret line="197" column="41" selection-start-line="197" selection-start-column="41" selection-end-line="197" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -104,17 +90,17 @@
       <file leaf-file-name="ScheduleTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/ScheduleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
+            <state relative-caret-position="152">
               <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="67" column="25" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="25" />
+            <state relative-caret-position="247">
+              <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -122,8 +108,8 @@
       <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="122" column="70" lean-forward="true" selection-start-line="122" selection-start-column="70" selection-end-line="122" selection-end-column="70" />
+            <state relative-caret-position="2318">
+              <caret line="122" column="70" selection-start-line="122" selection-start-column="70" selection-end-line="122" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -137,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/properties/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="57">
-              <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+              <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -145,18 +131,8 @@
       <file leaf-file-name="UserForm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/dto/UserForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-              <folding>
-                <element signature="e#147#148#0" expanded="true" />
-                <element signature="e#178#179#0" expanded="true" />
-                <element signature="e#226#227#0" expanded="true" />
-                <element signature="e#266#267#0" expanded="true" />
-                <element signature="e#301#302#0" expanded="true" />
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#380#381#0" expanded="true" />
-                <element signature="e#420#421#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="133">
+              <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -164,11 +140,8 @@
       <file leaf-file-name="VpsController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/controller/VpsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
+            <state relative-caret-position="760">
               <caret line="40" column="131" selection-start-line="40" selection-start-column="111" selection-end-line="40" selection-end-column="131" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -352,7 +325,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -554,6 +526,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -979,7 +952,8 @@
       <workItem from="1531965057975" duration="23048000" />
       <workItem from="1532055494313" duration="12749000" />
       <workItem from="1532083375845" duration="2220000" />
-      <workItem from="1532090675578" duration="5660000" />
+      <workItem from="1532090675578" duration="6303000" />
+      <workItem from="1532129821645" duration="730000" />
     </task>
     <servers />
   </component>
@@ -1016,7 +990,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="219474000" />
+    <option name="totallyTimeSpent" value="220847000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1029,7 +1003,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" content_ui="combo" id="Event Log" order="6" sideWeight="0.50073206" side_tool="true" weight="0.59076434" />
@@ -1052,8 +1025,8 @@
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3289256" />
       <window_info anchor="bottom" x="22" y="250" width="1322" height="228" id="Run" order="15" sideWeight="0.49926794" weight="0.71900827" />
       <window_info anchor="bottom" id="Spring" order="12" weight="0.3289256" />
-      <window_info anchor="bottom" id="Terminal" order="13" weight="0.30858085" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24205749" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.3069307" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24583964" />
       <window_info anchor="right" id="Bean Validation" order="9" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -1327,28 +1300,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/dto/UserForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding>
-            <element signature="e#147#148#0" expanded="true" />
-            <element signature="e#178#179#0" expanded="true" />
-            <element signature="e#226#227#0" expanded="true" />
-            <element signature="e#266#267#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#332#333#0" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-            <element signature="e#420#421#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/controller/VpsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
+        <state relative-caret-position="760">
           <caret line="40" column="131" selection-start-line="40" selection-start-column="111" selection-end-line="40" selection-end-column="131" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1371,15 +1331,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/ScheduleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
+        <state relative-caret-position="152">
           <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="67" column="25" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1389,21 +1342,28 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/properties/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
-          <caret line="3" column="15" lean-forward="true" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="122" column="70" lean-forward="true" selection-start-line="122" selection-start-column="70" selection-end-line="122" selection-end-column="70" />
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="200" column="14" lean-forward="true" selection-start-line="200" selection-start-column="14" selection-end-line="200" selection-end-column="14" />
+        <state relative-caret-position="3743">
+          <caret line="197" column="41" selection-start-line="197" selection-start-column="41" selection-end-line="197" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2318">
+          <caret line="122" column="70" selection-start-line="122" selection-start-column="70" selection-end-line="122" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
         </state>
       </provider>
     </entry>

@@ -75,7 +75,7 @@ public class VpsController {
             e.printStackTrace();
             logger.error("申请失败");
             returnResult.put("errno","-2");
-            returnResult.put("msg","请输入验证码");
+            returnResult.put("msg","申请失败");
             return returnResult;
         }
         if(applyResponse.get("errno").equals("0")){
