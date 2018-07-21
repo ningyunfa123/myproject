@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img alt="" src="<%=basePath%>/img/pinzhi.png" />
+                        <img alt="" src="<%=basePath%>/img/pinzhi.jpg" />
                         <div class="carousel-caption">
                             <h4>
                                 品质
