@@ -110,12 +110,12 @@
                     <form>
                         <fieldset>
                             <legend>套餐一</legend>
-                            <p>ip地址：</p>
-                            <p>加密方式：</p>
-                            <p>套餐价格：￥30/月</p>
+                            <p>ip地址：149.28.19.173</p>
+                            <p>加密方式：RC4-MD5</p>
+                            <p>套餐价格：￥10/月</p>
                             <p>
                                 <label>验证码</label>
-                            </p><input id="certCode1" type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn"  type="button" onclick="apply1()" >提交</button>
+                            </p><input id="certCode1" type="text"  /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 同意</label> <button class="btn"  type="button" onclick="apply1()" >提交</button>
                         </fieldset>
                     </form>
                 </div>
@@ -170,13 +170,13 @@
                     </p>
                     <form>
                         <fieldset>
-                            <legend>套餐二</legend>
-                            <p>ip地址：</p>
-                            <p> 加密方式：</p>
-                            <p>套餐价格：￥50/月</p>
+                            <legend>套餐二（暂未开放）</legend>
+                            <p>ip地址：149.28.19.173</p>
+                            <p> 加密方式：RC4-MD5</p>
+                            <p>套餐价格：￥xx/月</p>
                             <p>
                                 <label>验证码</label>
-                            </p><input id="certCode2" type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" data-toggle="modal" type="button" onclick="return apply2()" data-target="#modal-container-620238">提交</button>
+                            </p><input id="certCode2" type="text" readonly="readonly" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 同意</label> <button class="btn"  type="button" onclick="apply2()" >提交</button>
                         </fieldset>
                     </form>
                 </div>
@@ -187,12 +187,12 @@
                     </p>
                     <form>
                         <fieldset>
-                            <legend>套餐三</legend>
-                            <p>ip地址：</p>
-                            <p>加密方式：</p>
-                            <p> 套餐价格：￥60/月</p>
+                            <legend>套餐三（暂未开放）</legend>
+                            <p>ip地址：149.28.19.173</p>
+                            <p>加密方式：RC4-MD5</p>
+                            <p> 套餐价格：￥xx/月</p>
                             <p><label>验证码</label>
-                            </p><input type="text" /> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 勾选同意</label> <button class="btn" data-toggle="modal" type="button" onclick="return apply3()" data-target="#modal-container-620238">提交</button>
+                            </p><input id="certCode3"type="text" readonly="readonly"/> <span class="help-block">输入验证码获取信息.</span> <label class="checkbox"><input type="checkbox" /> 同意</label> <button class="btn"  type="button" onclick="apply3()" >提交</button>
                         </fieldset>
                     </form>
                 </div>
@@ -241,6 +241,8 @@
         
     }
     function apply2() {
+        alert("该套餐暂未开放");
+        return false;
         var vpsType =2;
         var certCode = $("#certCode2").val();
         var strs = certCode.split("#");
@@ -254,6 +256,8 @@
         apply(vpsType,certCode,useTime,sign)
     }
     function apply3() {
+        alert("该套餐暂未开放");
+        return false;
         var vpsType =3;
         var certCode = $("#certCode3").val();
         var strs = certCode.split("#");
