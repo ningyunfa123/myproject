@@ -23,35 +23,29 @@ public class UpdateVpsTask {
     private String path;
     @Autowired
     VPSService vpsService;
-    @Scheduled(cron = "0 0 3 * * ? ")
+    @Scheduled(cron = "0 0/1 * * * ? ")
     public void work() throws IOException {
         String jsonString = FileUtils.getFileContents(path);
         Map<String,Object> configMap = DataTransferUtils.jsonToMap(jsonString);
         //获取配置文件port password映射
         Map<String,String> configPortPassword = (Map<String, String>) configMap.get("port_password");
-        logger.error("config"+configPortPassword);
+        logger.debug("config"+configPortPassword);
         //获取数据库vps信息
         List<Map<String,Object>> vpsFromDB = vpsService.getByConds(null,null,null,0);
-        logger.error("vpsFromDB:"+vpsFromDB);
+        logger.debug("vpsFromDB:"+vpsFromDB);
         if(!CollectionUtils.isEmpty(vpsFromDB)){
             Map<String,String> dbPortPassword = new HashMap<>();
-            for(Map<String,Object> vps:vpsFromDB){
-                //对数据库port password 映射到map
-                dbPortPassword.put(vps.get("port").toString(),vps.get("password").toString());
-            }
-            logger.error("dbportPassword:"+dbPortPassword);
+            //数据映射
+            vpsFromDB.forEach(vps->dbPortPassword.put(vps.get("port").toString(),vps.get("password").toString()));
+            logger.debug("dbportPassword:"+dbPortPassword);
             //将配置文件port转成list
             List<Integer> configPortList = new ArrayList<>();// = Arrays.asList(portPassword.keySet().toArray());
-            for(Map.Entry<String,String> entry:configPortPassword.entrySet()){
-                configPortList.add(Integer.valueOf(entry.getKey()));
-                logger.error("configPortList:"+configPortList);
-            }
+            configPortPassword.forEach((key, value) -> configPortList.add(Integer.valueOf(key)));
+            logger.debug("configPortList:"+configPortList);
             //将数据库port转成list
             List<Integer> dbPortList = new ArrayList<>();
-            for(Map.Entry<String,String> entry:dbPortPassword.entrySet()){
-                dbPortList.add(Integer.valueOf(entry.getKey()));
-                logger.error("dbPortList:"+dbPortList);
-            }
+            dbPortPassword.forEach((key,value)->dbPortList.add(Integer.valueOf(key)));
+            logger.debug("dbPortList:"+dbPortList);
             //获取数据库中于配置文件不存在的端口信息并插入vps表
             for(Integer port:configPortList){
                 if(!dbPortPassword.containsKey(port.toString())){
@@ -60,6 +54,7 @@ public class UpdateVpsTask {
                         Vpsform vpsform1 = new Vpsform();
                         vpsform1.setId(dbPortinvalid.get(0).get("id").toString());
                         vpsform1.setDeleteFlag("0");
+                        vpsform1.setStatus("1");
                         vpsService.update(vpsform1);
                     }else{
                         String password = configPortPassword.get(port.toString());
@@ -72,7 +67,7 @@ public class UpdateVpsTask {
 
                         }catch (Exception e){
                             e.printStackTrace();
-                            logger.error("vps信息插入数据库失败");
+                            logger.error(" 定时更新vpsrecord表任务vps信息插入数据库失败");
                         }
                     }
 
@@ -89,7 +84,7 @@ public class UpdateVpsTask {
                         vpsService.update(vpsform);
                     }catch (Exception e){
                         e.printStackTrace();
-                        logger.error("删除数据库vps信息失败");
+                        logger.error("定时更新vpsrecord表任务删除数据库vps信息失败");
                     }
                 }
             }
@@ -102,10 +97,9 @@ public class UpdateVpsTask {
                     vpsform.setIp(configMap.get("server").toString());
                     try {
                         vpsService.insert(vpsform);
-
                     }catch (Exception e){
                         e.printStackTrace();
-                        logger.error("vps信息插入数据库失败");
+                        logger.error("定时更新vpsrecord表任务vps信息插入数据库失败");
                     }
                 }
             }

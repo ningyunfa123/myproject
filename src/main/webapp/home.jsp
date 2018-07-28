@@ -96,7 +96,7 @@
                     Hello, everyone!
                 </h2>
                 <p>
-                    &nbsp; &nbsp; &nbsp; &nbsp;当你进入到这个页面的时候，说明你已经购买了相应的vps产品了。该网站是近期刚开发，内部可能会存在一些bug或其它问题，还请各位如果遇到什么问题不要急躁，你及时联系我我及时帮大家解决。由于网站刚上线没有客流量，就没有接入支付宝等相关支付业务,等后续客流量上来了将会陆续接入相关支付服务，届时用户可以直接在网站下单而不需要在电商平台下单然后找我这么麻烦了。
+                    &nbsp; &nbsp; &nbsp; &nbsp;当你进入到这个页面的时候,说明你已经购买了相应的vps产品了.该网站是近期刚开发,内部可能会存在一些bug或其它问题,还请各位如果遇到什么问题不要急躁,你及时联系我我及时帮大家解决.淘宝下单支付<a href="https://www.baidu.com"><strong>请点击</strong></a>,二维码支付请点击<button class="btn btn-primary" data-toggle="modal" type="button" data-target="#pictureModal">这里</button>
                 </p>
                 <p>
                     <a class="btn btn-primary btn-large" href="javascript:fastquery()">快速查看 »</a>
@@ -148,6 +148,22 @@
                     </div>
                 </div>
                 <!-- #############################-->
+                <!--端口信息返回模态框 -->
+                <div id="pictureModal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabe2">
+                            支付码
+                        </h3>
+                    </div>
+                    <div class="modal-body">
+                        <img alt="" src="<%=basePath%>/img/shoukuan.jpg" style="width: 140px; height: 140px;" />
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                    </div>
+                </div>
+                <!-- #############################-->
                 <div class="span4">
                     <p>
                         <img alt="" src="<%=basePath%>/img/show1.jpg" />
@@ -181,7 +197,7 @@
                     </form>
                 </div>
 
-                
+
             </div>
         </div>
     </div>

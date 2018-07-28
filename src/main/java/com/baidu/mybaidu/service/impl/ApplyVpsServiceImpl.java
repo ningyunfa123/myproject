@@ -91,8 +91,6 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
                 return returnResult;
             }
         }
-
-
         //获取套餐流量
         switch (applyVpsDto.getVpsType()) {
             case "1":
@@ -130,7 +128,7 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
         //todo执行shell
         Boolean shellSuccess;
         try{
-            shellSuccess = execShellToRestrict(applyVpsDto);
+            shellSuccess = execShellToRestrictPort(applyVpsDto);
         }catch (Exception e){
             returnResult.put("errno","-2");
             returnResult.put("msg","系统错误，请联系管理员处理");
@@ -196,26 +194,35 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
         List<Map<String,Object>> dbResult = vpsService.getByConds(id,port,useStatus,deleteFlag);
         return CollectionUtils.isEmpty(dbResult)? null:dbResult.get(0);
     }
-    private Boolean execShellToRestrict(ApplyVpsDto applyVpsDto) throws Exception {
+    private Boolean execShellToRestrictPort(ApplyVpsDto applyVpsDto) throws Exception {
         if(StringUtils.isEmpty(applyVpsDto.getIp()) || applyVpsDto.getPort() == null){
             throw new Exception("执行shell必要参数为空");
         }
         try {
             String portRestrictFilePath = this.getClass().getClassLoader().getResource("/shell/portrestrict.sh").getPath();
-            String amountRestrictFilePath = this.getClass().getClassLoader().getResource("/shell/amountrestrict.sh").getPath();
+            logger.fatal("portRestrictFilePath"+portRestrictFilePath);
             String port = applyVpsDto.getPort().toString();
-            Integer amount = Integer.valueOf(applyVpsDto.getUseTime())*applyVpsDto.getMonthAmount();
-            Long transAmount = Long.valueOf(amount)*1000000L;
-            String stringTransAmount = transAmount.toString();
-            String[] portRestrictParam = new String[]{port};
-            String[] amountRestrictParam = new String[]{port,stringTransAmount};
-            ShellUtils.execShell(portRestrictFilePath,portRestrictParam);
-            ShellUtils.execShell(amountRestrictFilePath,amountRestrictParam);
+            ShellUtils.execShell(portRestrictFilePath,port);
         }catch (Exception e){
-            logger.fatal("执行shell异常");
+            logger.fatal("用户ss帐号申请shell执行出错");
             //暂不处理
             e.printStackTrace();
-            return false;
+            throw e;
+        }
+        return true;
+    }
+    private Boolean execShellToRestrictAmount(ApplyVpsDto applyVpsDto){
+        String amountRestrictFilePath = this.getClass().getClassLoader().getResource("/shell/amountrestrict.sh").getPath();
+        String port = applyVpsDto.getPort().toString();
+        Integer amount = Integer.valueOf(applyVpsDto.getUseTime())*applyVpsDto.getMonthAmount();
+        Long transAmount = Long.valueOf(amount)*1000000L;
+        String stringTransAmount = transAmount.toString();
+        try {
+            ShellUtils.execShell(amountRestrictFilePath, port, stringTransAmount);
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.fatal("流量限制shell执行出错");
+            throw e;
         }
         return true;
     }

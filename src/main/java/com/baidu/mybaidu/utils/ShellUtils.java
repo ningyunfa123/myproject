@@ -54,9 +54,11 @@ public class ShellUtils {
             cmd=ArrayUtils.addAll(cmd,para);
 
             //解决脚本没有执行权限
+            /*
             ProcessBuilder builder = new ProcessBuilder("/bin/chmod", "755",scriptPath);
             Process process = builder.start();
             process.waitFor();
+            */
 
             Process ps = Runtime.getRuntime().exec(cmd);
             ps.waitFor();

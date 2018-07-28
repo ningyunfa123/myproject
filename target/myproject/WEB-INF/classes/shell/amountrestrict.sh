@@ -9,5 +9,3 @@ iptables -A TRAFFIC_QUOTA -m quota --quota $amount -j ACCEPT
 iptables -A TRAFFIC_QUOTA -j DROP
 service iptables save
 service iptables start
-#重启防火墙使配置文件生效
-systemctl restart iptables.service
