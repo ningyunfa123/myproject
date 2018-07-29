@@ -18,52 +18,6 @@
 			 e.userName = #{userName} AND e.password = #{password} limit 1
 
 	</select>
-    <select id="queryState" resultType="java.util.Map">
-		SELECT
-			COUNT(*) AS value,state AS name
-		FROM
-			equ_equipment
-		GROUP BY state
-	</select>
-    <select id="queryRepairChart" resultType="java.util.Map">
-        SELECT
-        count(*) AS value,
-        <if test="time == 1">
-            date_format(createTime,'%Y-%m-%d') AS createTime
-        </if>
-        <if test="time == 2">
-            date_format(createTime,'%Y-%m-%d') AS createTime
-        </if>
-        <if test="time == 3">
-            date_format(createTime,'%Y-%m') AS createTime
-        </if>
-
-        FROM
-        equ_repair
-        WHERE
-        <if test="time == 1">
-            YEARWEEK(date_format(createTime,'%Y-%m-%d')) = YEARWEEK(now())
-        </if>
-        <if test="time == 2">
-            date_format(createTime,'%Y-%m')=date_format(now(),'%Y-%m')
-        </if>
-        <if test="time == 3">
-            date_format(createTime,'%Y')=date_format(now(),'%Y')
-        </if>
-
-        GROUP BY
-        <if test="time == 1">
-            date_format(createTime,'%Y-%m-%d')
-        </if>
-        <if test="time == 2">
-            date_format(createTime,'%Y-%m-%d')
-        </if>
-        <if test="time == 3">
-            date_format(createTime,'%Y-%m')
-        </if>
-
-
-    </select>
     <update id="updateUser" parameterType="com.baidu.mybaidu.pojo.User">
         UPDATE
             equ_user
@@ -71,4 +25,34 @@
           userName = #{userName},password = #{password}
         WHERE id=1
     </update>
+    <insert id="createUser" parameterType="com.baidu.mybaidu.pojo.User">
+		INSERT INTO
+			equ_user(
+				userName,
+				password,
+				roleName,
+				trueName,
+				deptName,
+				createId,
+				createTime,
+				phone
+			)
+		VALUES(
+			#{userName},
+			#{password},
+			#{roleName},
+			#{trueName},
+			#{deptName},
+			#{createId},
+			NOW(),
+			#{phone}
+		)
+	</insert>
+    <select id="signUp" parameterType="com.baidu.mybaidu.pojo.User" resultType="com.baidu.mybaidu.pojo.User">
+		SELECT
+		* FROM equ_user e
+		WHERE
+		e.userName = #{userName}  limit 1
+
+	</select>
 </mapper>

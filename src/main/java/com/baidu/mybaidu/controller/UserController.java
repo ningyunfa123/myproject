@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import com.baidu.mybaidu.dto.UserForm;
+import net.sf.json.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -104,41 +106,40 @@ public class UserController {
 	//添加角色
 	@ResponseBody
 	@RequestMapping(value="/createUser",method = RequestMethod.POST)
-	public String createUser(HttpServletRequest request){
-		String name = request.getParameter("userName");
-		String trueName = request.getParameter("trueName");
-		String password = request.getParameter("password");
+	public Map<String,Object> createUser(@RequestBody UserForm userForm){
+		Map<String,Object> res = new HashMap<>();
+		String name = userForm.getUserName();
+		String trueName = userForm.getTrueName();
+		String password = userForm.getPassword();
+		logger.fatal("name:"+name+"truename："+trueName);
+		if(StringUtils.isEmpty(name) || StringUtils.isEmpty(trueName) || StringUtils.isEmpty(password)){
+
+			res.put("errno","-1");
+			res.put("msg","userName/trueName/password is empty");
+			return res;
+		}
 		User user = new User();
 		user.setRoleName("用户");
 		user.setPassword(password);
 		user.setUserName(name);
 		user.setTrueName(trueName);
 
-		String url = request.getScheme() + "://"
-				+ request.getServerName() + ":" + request.getServerPort()+request.getContextPath();
-
 		// 检查用户是否已经注册过啦
 		User currentUser = userService.signUp(user);
-
 		if (currentUser != null) {
-			return "This name is taken  Or You've already signed up<br><a href = \""+url+"/signup\">Click  Me To Re-Sign-up</a><br>" +
-					"<a href = \""+url+"\">Click Me To Login</a>";
+			res.put("errno","-1");
+			res.put("msg","this account is already signed up");
+			return res;
 		}
-
-		int userNums = userService.countUserNum();
-		if (userNums<=100){
-			boolean bool = userService.createUser(user);
-			if(bool){
-				return "Sign up succeed <a href = \""+url+"\">Click  Me To Login</a>";
-			}else {
-				return "Sign up Failed <a href = \""+url+"/signup\">Click Me To Re-Sign-Up</a>";
-			}
+		boolean bool = userService.createUser(user);
+		if(bool){
+			res.put("errno","0");
+			res.put("msg","sign up success");
+			return res;
 		}else {
-			return "User Number is full<br>" +
-					"Anyway, you can still login with a guest account<br>" +
-					"username: guest<br>" +
-					"password: guest<br>" +
-					"<a href = \"" + url + "\">Click  Me To Login</a>";
+			res.put("errno","-1");
+			res.put("msg","sign up faild");
+			return res;
 		}
 	}
 

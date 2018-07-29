@@ -1,94 +1,189 @@
-<!doctype html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>本页面仅提供注册</title>
     <%
         String path = request.getContextPath();
         String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
     %>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>/css/dmaku.css" />
-    <script src="<%=basePath%>/js/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="<%=basePath%>/css/index.css" />
+    <link rel="stylesheet" href="<%=basePath%>/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <script type="text/javascript" src="<%=basePath%>/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="<%=basePath%>/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+
 
 </head>
+
 <body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="carousel slide" id="carousel-364892" data-interval="4000">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#carousel-364892">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-364892">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-364892">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="" src="<%=basePath%>/img/kgyo.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                雄鹰展翅
+                            </h4>
+                            <p>
+                                凛凛生威风，扶遥上太空。盘旋九万里，万物一览中。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="<%=basePath%>/img/pinzhi.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                品质
+                            </h4>
+                            <p>
+                                好的品质，值得信赖，当然，你，值得拥有。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="<%=basePath%>/img/planet.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                太空
+                            </h4>
+                            <p>
+                                编不下去了，自己脑补句子吧。
+                            </p>
+                        </div>
+                    </div>
+                </div> <a data-slide="prev" href="#carousel-364892" class="left carousel-control">‹</a> <a data-slide="next" href="#carousel-364892" class="right carousel-control">›</a>
+            </div>
+            <form  action="#" id="login_form" >
+                <div>
+                    <div class="login-item">
+                        <span class="span_user glyphicon glyphicon-user "></span>
+                        <input type="text"  class="form-input" id="userName" maxlength="21" placeholder="邮箱帐户" name="userName" value="">
+                    </div>
+                </div>
+                <div>
+                    <div class="login-item">
+                        <span class="span_user glyphicon glyphicon-user "></span>
+                        <input type="text"  class="form-input" id="trueName" maxlength="21" placeholder="用户名" name="userName" value="">
+                    </div>
+                </div>
+                <div>
+                    <div class="login-item">
+                        <span class="span_user glyphicon glyphicon-lock"></span>
+                        <input type="password" class="form-input" id="password" maxlength="18"  placeholder="密码" name="password" value="">
+                    </div>
+                </div>
+                <div>
+                    <div class="login-item">
+                        <span class="span_user glyphicon glyphicon-lock"></span>
+                        <input type="password" class="form-input" id="password1" maxlength="18"  placeholder="确认密码" name="password" value="">
+                    </div>
+                </div>
 
-<div class="wrap flex-c-c">
-    <form action="<%=basePath%>/user/createUser" method="post" class="flex-c-c" id="myform">
-        <ul class="select__list">
-            <li id="js-usr-rtn" class="select__label">Sign in</li>
-            <%--<li id="js-usr-new" class="select__label select__label--active">Sign up</li>--%>
-            <%--<li id="js-usr-rst" class="select__label">Forget PassWord</li>--%>
-        </ul>
-        <span class="pointer"></span>
-        <input type="email" placeholder="Email Address" class="ui-field" id="js-field__email" name="userName"/>
-        <input type="text" placeholder="User Name" class="ui-field" id="js-field__user" name="trueName"/>
-        <input type="password" placeholder="Password" class="ui-field" id="js-field__pass" name="password" />
-        <input type="password" placeholder="Confirm Password" class="ui-field" id="js-field__r-pass" />
-        <button id="js-btn" class="ui-button --usr-new" onclick="return signup()"></button>
-    </form>
+                <div align="center" >
+                    <input type="button"  class="formBtn-login" onclick="signup()" value="注册" />
+                </div>
+
+
+            </form>
+        </div>
+    </div>
 </div>
-
-<script>
-    //to-do. dry-up & remove jq
-    $('.select__label').click(function() {
-        $('.select__label').removeClass('select__label--active');
-        $(this).addClass('select__label--active');
-    });
-
-    $('#js-usr-rtn').click(function() {
-        $('#js-btn, .pointer, #js-field__pass').removeClass('--usr-new --usr-rst ui-field--hidden');
-        $('#js-btn, .pointer').addClass('--usr-rtn');
-        $('#js-field__r-pass').addClass('ui-field--hidden');
-    });
-    $('#js-usr-new').click(function() {
-        $('#js-btn, .pointer, #js-field__r-pass, #js-field__pass').removeClass('--usr-rtn --usr-rst ui-field--hidden');
-        $('#js-btn').addClass('--usr-new');
-    });
-    $('#js-usr-rst').click(function() {
-        $('#js-btn, .pointer').removeClass('--usr-rtn --usr-new');
-        $('#js-btn, .pointer').addClass('--usr-rst');
-        $('#js-field__r-pass, #js-field__pass').addClass('ui-field--hidden');
-    });
-    function signup(){
-        var userName = $("#js-field__email").val();
-        var trueName = $("#js-field__user").val();
-        var password = $("#js-field__pass").val();
-        var password2 = $("#js-field__r-pass").val();
-        if (!userName || !password ||!password2 || !trueName){
-            alert("Invalid Input");
+<%--<div class="login_bottom">--%>
+<%--<span class="bottom_info">Copyright©2005-2016 360.CN All Rights Reserved 360安全中心 京ICP证080047号 京公网安备110000000006号</span>--%>
+<%--</div>--%>
+<script type="text/javascript">
+    function signup() {
+        var userName = $.trim($("#userName").val());
+        var trueName = $.trim($("#trueName").val());
+        var password = $.trim($("#password").val());
+        var password1 = $.trim($("#password1").val());
+        var valid = userName.split("@");
+        if(valid.length<=1 || !valid[1]){
+            alert("邮箱不合法");
             return false;
         }
-        if(password2 != password){
-            alert("password should be same")
+        if(!userName || !password || !password1 || !trueName){
+            alert("输入信息不全");
             return false;
         }
+        if(password != password1){
+            alert("两次密码输入不一致");
+            return false;
+        }
+
         $
             .ajax({
                 url: "<%=basePath%>/user/createUser",
                 type: "post",
                 contentType: "application/json",
-                dataType:"html",
-                data:{
+                data: JSON.stringify({
                     userName: userName,
-                    trueName: trueName,
+                    trueName:trueName,
                     password: password
-                },
+                }),
                 success: function (data) {
-                    $('#main').empty();
-                    $('#main').html(data);
+                    if(data.errno ==0){
+                        alert("注册成功,请前往登录");
+                        window.location.href="<%=basePath%>/login.jsp";
+                    }else{
+                        alert(data.msg);
+                    }
 
                 },
                 error: function () {
                     alert("添加出错!");
+                    window.location.href = "<%=basePath%>/signup";
+
                 }
 
             });
-
-
     }
-
 </script>
 </body>
+
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
