@@ -27,21 +27,19 @@
 
 
     function createConfig(){
-        var logShow = $.trim($("#logShow").val());
+        var port = $.trim($("#port").val());
         $
             .ajax({
-                url: "<%=basePath%>/user/updateUser",
+                url: "<%=basePath%>/shell/shellexecute",
                 type: "post",
-                contentType: "application/json",
-                data:  JSON.stringify({
-                    userName:logShow
-                }),
+                data: {
+                    port:port
+                },
                 success: function (data) {
-                    if (data == true) {
+                    if (data.errno ==0) {
                         alert("添加成功!");
-                        pagehtml($("#currentPage").val());
                     }else{
-                        alert("添加失败");
+                        alert(data.msg);
                     }
                 },
                 error: function () {
@@ -60,9 +58,9 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="logShow" class="col-md-4 control-label">日志</label>
+                        <label for="port" class="col-md-4 control-label">端口</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="logShow" name="uriConfig"
+                            <input type="text" class="form-control" id="port" name="port"
                                    placeholder="">
                         </div>
                     </div>

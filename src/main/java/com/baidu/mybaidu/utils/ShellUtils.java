@@ -3,6 +3,7 @@ package com.baidu.mybaidu.utils;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
@@ -47,33 +48,24 @@ public class ShellUtils {
      * @param scriptPath 脚本路径
      * @param para 参数数组
      */
-    public static void execShell(String scriptPath, String ... para) {
+    public static void execShell(String scriptPath, String ... para) throws Exception {
         try {
-            String[] cmd = new String[]{scriptPath};
-            //为了解决参数中包含空格
-            cmd=ArrayUtils.addAll(cmd,para);
-
+            if(System.getProperty("os.name").toLowerCase().startsWith("win")){
+                throw new Exception("操作系统非linux");
+            }
+            StringBuilder scriptPathBuilder = new StringBuilder(scriptPath);
+            Arrays.stream(para).forEach(aPara->scriptPathBuilder.append(" ").append(aPara));
+            String[] cmd = new String[]{"/bin/sh","-c",scriptPathBuilder.toString()};
             //解决脚本没有执行权限
             /*
             ProcessBuilder builder = new ProcessBuilder("/bin/chmod", "755",scriptPath);
             Process process = builder.start();
             process.waitFor();
             */
-
-            Process ps = Runtime.getRuntime().exec(cmd);
-            ps.waitFor();
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(ps.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-            //执行结果
-            String result = sb.toString();
-
+            Process ps = Runtime.getRuntime().exec(cmd,null,null);
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         }
     }
 }

@@ -211,21 +211,6 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
         }
         return true;
     }
-    private Boolean execShellToRestrictAmount(ApplyVpsDto applyVpsDto){
-        String amountRestrictFilePath = this.getClass().getClassLoader().getResource("/shell/amountrestrict.sh").getPath();
-        String port = applyVpsDto.getPort().toString();
-        Integer amount = Integer.valueOf(applyVpsDto.getUseTime())*applyVpsDto.getMonthAmount();
-        Long transAmount = Long.valueOf(amount)*1000000L;
-        String stringTransAmount = transAmount.toString();
-        try {
-            ShellUtils.execShell(amountRestrictFilePath, port, stringTransAmount);
-        }catch (Exception e){
-            e.printStackTrace();
-            logger.fatal("流量限制shell执行出错");
-            throw e;
-        }
-        return true;
-    }
     private String[] getCertCodeArray(String path) throws IOException {
         return FileUtils.getFileContents(path).split(",");
     }
