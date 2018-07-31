@@ -96,7 +96,7 @@
                     Hello, everyone!
                 </h2>
                 <p>
-                    &nbsp; &nbsp; &nbsp; &nbsp;当你进入到这个页面的时候,说明你已经购买了相应的vps产品了.该网站是近期刚开发,内部可能会存在一些bug或其它问题,还请各位如果遇到什么问题不要急躁,你及时联系我我及时帮大家解决.淘宝下单支付<a href="https://www.baidu.com"><strong>请点击</strong></a>,二维码支付请点击<button class="btn btn-primary" data-toggle="modal" type="button" data-target="#pictureModal">这里</button>
+                    &nbsp; &nbsp; &nbsp; &nbsp;当你进入到这个页面的时候,说明你已经购买了相应的vps产品了.该网站是近期刚开发,内部可能会存在一些bug或其它问题,还请各位如果遇到什么问题不要急躁,你及时联系我我及时帮大家解决.淘宝下单支付<a href="https://item.taobao.com/item.htm?spm=a1z38n.10677092.0.0.13131deb9ENWBH&id=574394972178"><strong>请点击</strong></a>,二维码支付请点击<button class="btn btn-primary" data-toggle="modal" type="button" data-target="#pictureModal">这里</button>
                 </p>
                 <p>
                     <a class="btn btn-primary btn-large" href="javascript:fastquery()">快速查看 »</a>
