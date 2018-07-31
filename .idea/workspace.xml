@@ -8,7 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5bd37c83-d6ac-41f2-bc6f-da304ec800f4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/service/impl/ApplyVpsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/service/impl/ApplyVpsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/UpdateVpsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/UpdateVpsTask.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -65,11 +65,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ApplyVpsServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ApplyVpsServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/service/impl/ApplyVpsServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+            <state relative-caret-position="366">
+              <caret line="204" column="49" selection-start-line="204" selection-start-column="49" selection-end-line="204" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdateVpsTask.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/UpdateVpsTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="57" column="54" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -78,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/utils/ShellUtils.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="855">
-              <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
+              <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -86,15 +95,6 @@
       <file leaf-file-name="shellfile.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/properties/shellfile.properties">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3971">
-              <caret line="209" column="36" selection-start-line="209" selection-start-column="36" selection-end-line="209" selection-end-column="36" />
-            </state>
-          </provider>
         </entry>
       </file>
       <file leaf-file-name="log4j.properties" pinned="false" current-in-tab="false">
@@ -133,7 +133,7 @@
       <file leaf-file-name="home.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
+            <state relative-caret-position="1862">
               <caret line="98" column="206" selection-start-line="98" selection-start-column="206" selection-end-line="98" selection-end-column="206" />
             </state>
           </provider>
@@ -228,7 +228,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/properties/certcodefile.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/properties/jdbc.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/properties/shadowsocksconfig.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/UpdateVpsTask.java" />
         <option value="$PROJECT_DIR$/src/main/resources/shell/portrestrict.sh" />
         <option value="$PROJECT_DIR$/src/main/resources/properties/shellfile.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/utils/ShellUtils.java" />
@@ -238,6 +237,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/properties/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/home.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/service/impl/ApplyVpsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/UpdateVpsTask.java" />
       </list>
     </option>
   </component>
@@ -312,8 +312,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-85" />
-    <option name="y" value="312" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -323,7 +323,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="myproject" type="58d84e3e:PackageViewProjectNode" />
+              <item name="myproject" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -568,6 +578,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -592,17 +603,6 @@
               <item name="src/main" type="cbb8eebc:String" user="src/main" />
               <item name="resources" type="cbb8eebc:String" user="resources" />
               <item name="config" type="cbb8eebc:String" user="config" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="myproject" type="58d84e3e:PackageViewProjectNode" />
-              <item name="myproject" type="616d4139:PackageViewModuleNode" />
             </path>
           </expand>
           <select />
@@ -1082,7 +1082,8 @@
       <workItem from="1532915267274" duration="6917000" />
       <workItem from="1532960956348" duration="741000" />
       <workItem from="1532992105207" duration="2504000" />
-      <workItem from="1532997722556" duration="375000" />
+      <workItem from="1532997722556" duration="1223000" />
+      <workItem from="1533001354972" duration="800000" />
     </task>
     <servers />
   </component>
@@ -1119,7 +1120,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280337000" />
+    <option name="totallyTimeSpent" value="281985000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1154,7 +1155,7 @@
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3289256" />
       <window_info anchor="bottom" x="22" y="250" width="1322" height="228" id="Run" order="15" sideWeight="0.49926794" weight="0.75867766" />
       <window_info anchor="bottom" id="Spring" order="12" weight="0.3289256" />
-      <window_info anchor="bottom" id="Terminal" order="13" weight="0.29372936" />
+      <window_info anchor="bottom" id="Terminal" order="13" weight="0.29256198" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27231467" />
       <window_info anchor="right" id="Bean Validation" order="9" />
       <window_info id="Web" order="2" side_tool="true" />
@@ -1385,13 +1386,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/UpdateVpsTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/shell/portrestrict.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -1415,16 +1409,6 @@
           <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/utils/ShellUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/properties/shellfile.properties">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1458,15 +1442,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
+        <state relative-caret-position="1862">
           <caret line="98" column="206" selection-start-line="98" selection-start-column="206" selection-end-line="98" selection-end-column="206" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/properties/shellfile.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/utils/ShellUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/service/impl/ApplyVpsServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+        <state relative-caret-position="366">
+          <caret line="204" column="49" selection-start-line="204" selection-start-column="49" selection-end-line="204" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baidu/mybaidu/schedule/UpdateVpsTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="57" column="54" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="54" />
         </state>
       </provider>
     </entry>

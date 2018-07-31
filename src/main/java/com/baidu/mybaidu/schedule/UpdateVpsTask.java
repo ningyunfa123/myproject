@@ -55,6 +55,7 @@ public class UpdateVpsTask {
                         vpsform1.setId(dbPortinvalid.get(0).get("id").toString());
                         vpsform1.setDeleteFlag("0");
                         vpsform1.setStatus("1");
+                        vpsform1.setPassword(configPortPassword.get(port.toString()));
                         vpsService.update(vpsform1);
                     }else{
                         String password = configPortPassword.get(port.toString());
