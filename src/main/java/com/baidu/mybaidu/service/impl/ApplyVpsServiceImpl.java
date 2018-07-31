@@ -38,11 +38,13 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
     @Value("${amount_menu3}")
     private Integer menu3Amount;
     @Autowired
-    VPSTypeService vpsTypeService;
+    private VPSTypeService vpsTypeService;
     @Autowired
-    VPSService vpsService;
+    private VPSService vpsService;
     @Autowired
-    VPSRecordeService vpsRecordeService;
+    private VPSRecordeService vpsRecordeService;
+    @Value("${shellFilePath}")
+    private String shellPath;
     @Override
     public Map<String,Object> applyVps(ApplyVpsDto applyVpsDto) throws Exception {
         Map<String,Object> returnResult = new HashMap<>();
@@ -199,10 +201,8 @@ public class ApplyVpsServiceImpl implements ApplyVpsService {
             throw new Exception("执行shell必要参数为空");
         }
         try {
-            String portRestrictFilePath = this.getClass().getClassLoader().getResource("/shell/portrestrict.sh").getPath();
-            logger.fatal("portRestrictFilePath"+portRestrictFilePath);
             String port = applyVpsDto.getPort().toString();
-            ShellUtils.execShell(portRestrictFilePath,port);
+            ShellUtils.execShell(shellPath,port);
         }catch (Exception e){
             logger.fatal("用户ss帐号申请shell执行出错");
             //暂不处理
