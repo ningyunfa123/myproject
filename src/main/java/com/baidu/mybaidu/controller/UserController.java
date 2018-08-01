@@ -50,9 +50,16 @@ public class UserController {
 		}
 
 		User user = new User();
-		user.setUserName(userForm.getUserName());
+		if(StringUtils.isNotEmpty(userForm.getUserName())){
+			user.setUserName(userForm.getUserName());
+		}
+		if(StringUtils.isNotEmpty(userForm.getTrueName())){
+			user.setTrueName(userForm.getTrueName());
+		}
 		user.setPassword(userForm.getPassword());
+		logger.fatal("userName:"+user.getUserName()+",trueName:"+user.getTrueName()+",password:"+user.getPassword());
 		currentUser = userService.login(user);
+		logger.fatal(currentUser);
 
 		if(currentUser == null){
 			result.put("errno","-1");

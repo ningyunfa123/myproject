@@ -15,7 +15,14 @@
 		SELECT
 			* FROM equ_user e
 		WHERE
-			 e.userName = #{userName} AND e.password = #{password} limit 1
+		    e.password = #{password}
+		    <if test="userName != null">
+				AND e.userName = #{userName}
+			</if>
+		    <if test="trueName != null">
+				AND e.trueName = #{trueName}
+			</if>
+			limit 1
 
 	</select>
     <update id="updateUser" parameterType="com.baidu.mybaidu.pojo.User">

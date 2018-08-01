@@ -70,7 +70,7 @@
                 <div>
                     <div class="login-item">
                         <span class="span_user glyphicon glyphicon-user "></span>
-                        <input type="text"  class="form-input" id="user" maxlength="21" placeholder="用户名" name="userName" value="">
+                        <input type="text"  class="form-input" id="user" maxlength="21" placeholder="用户名/邮箱" name="userName" value="">
                     </div>
                 </div>
                 <div>
@@ -103,12 +103,21 @@
 <%--</div>--%>
 <script type="text/javascript">
     function login() {
-        var userName = $.trim($("#user").val());
+        var user = $.trim($("#user").val());
         var password = $.trim($("#password").val());
-        if(!userName || !password){
+        if(!user || !password){
             alert("用户名或密码不能为空！")
             return false;
         }
+        var userName = "";
+        var trueName = "";
+        var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+        if(reg.test(user)){
+            userName = user;
+        }else{
+            trueName = user;
+        }
+
         $
             .ajax({
                 url: "<%=basePath%>/user/login",
@@ -116,6 +125,7 @@
                 contentType: "application/json",
                 data: JSON.stringify({
                     userName: userName,
+                    trueName:trueName,
                     password: password
                 }),
                 success: function (data) {

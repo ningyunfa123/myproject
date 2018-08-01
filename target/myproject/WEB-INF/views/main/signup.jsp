@@ -111,7 +111,8 @@
         var password = $.trim($("#password").val());
         var password1 = $.trim($("#password1").val());
         var valid = userName.split("@");
-        if(valid.length<=1 || !valid[1]){
+        var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+        if(!reg.test(userName)){
             alert("邮箱不合法");
             return false;
         }
