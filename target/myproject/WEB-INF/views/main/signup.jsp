@@ -110,21 +110,19 @@
         var trueName = $.trim($("#trueName").val());
         var password = $.trim($("#password").val());
         var password1 = $.trim($("#password1").val());
-        var valid = userName.split("@");
+        if(!userName || !password || !password1 || !trueName){
+            alert("输入信息不全");
+            return false;
+        }
         var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
         if(!reg.test(userName)){
             alert("邮箱不合法");
-            return false;
-        }
-        if(!userName || !password || !password1 || !trueName){
-            alert("输入信息不全");
             return false;
         }
         if(password != password1){
             alert("两次密码输入不一致");
             return false;
         }
-
         $
             .ajax({
                 url: "<%=basePath%>/user/createUser",

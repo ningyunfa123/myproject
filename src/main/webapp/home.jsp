@@ -110,8 +110,8 @@
                     <form>
                         <fieldset>
                             <legend>套餐一</legend>
-                            <p>ip地址：149.28.19.173</p>
-                            <p>加密方式：RC4-MD5</p>
+                            <p>ip地址：207.148.97.107</p>
+                            <p>加密方式：aes-256-cfb</p>
                             <p>套餐价格：￥10/月</p>
                             <p>
                                 <label>验证码</label>

@@ -4,6 +4,7 @@ import com.baidu.mybaidu.dto.VpsRecordForm;
 import com.baidu.mybaidu.service.VPSRecordeService;
 import com.baidu.mybaidu.utils.DataTransferUtils;
 import com.baidu.mybaidu.utils.FileUtils;
+import com.baidu.mybaidu.utils.ShellUtils;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,12 @@ public class VpsMonitor {
                     logger.fatal("vps信息更新定时任务写文件失败");
                     e.printStackTrace();
                     throw e;
+                }finally {
+                    try {
+                        ShellUtils.execShell("/home/ningyunfa1/vpsproject/rebootshadowsocks.sh");
+                    }catch (Exception e){
+                        logger.fatal("excute rebootshadowsocks.sh faild");
+                    }
                 }
                 for(String id:vpsRecordIds){
                     VpsRecordForm vpsRecordForm = new VpsRecordForm();

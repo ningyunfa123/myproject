@@ -1,6 +1,8 @@
 package com.baidu.mybaidu.utils;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -54,7 +56,9 @@ public class ShellUtils {
                 throw new Exception("操作系统非linux");
             }
             StringBuilder scriptPathBuilder = new StringBuilder(scriptPath);
-            Arrays.stream(para).forEach(aPara->scriptPathBuilder.append(" ").append(aPara));
+            if(para!=null &&para.length>0) {
+                Arrays.stream(para).forEach(aPara -> scriptPathBuilder.append(" ").append(aPara));
+            }
             String[] cmd = new String[]{"/bin/sh","-c",scriptPathBuilder.toString()};
             //解决脚本没有执行权限
             /*
